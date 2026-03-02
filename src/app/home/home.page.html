@@ -1,70 +1,21 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Cabecalho
+      Receitas
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-grid>
-    <ion-row>
-      <ion-col size-md="6">
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title>CARD</ion-card-title>
-            <ion-card-content>
-              <ion-item>
-                <ion-label position="floating">teste</ion-label>
-                <ion-input type="text"></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-label position="floating">teste</ion-label>
-                <ion-input type="text"></ion-input>
-              </ion-item>
-            </ion-card-content>
-          </ion-card-header>
-        </ion-card>
-      </ion-col>
-      <ion-col size-md="6">
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title>CARD</ion-card-title>
-            <ion-card-content>
-              <ion-item>
-                <ion-label position="floating">teste</ion-label>
-                <ion-input type="text"></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-label position="floating">teste</ion-label>
-                <ion-input type="text"></ion-input>
-                <ion-button fill="outline" color="primary">
-                  <ion-icon slot="start" name="star"></ion-icon>
-                  Danger button
-                </ion-button>
-              </ion-item>
-            </ion-card-content>
-          </ion-card-header>
-        </ion-card>
-      </ion-col>
-      <ion-col size-md="6">
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title>CARD</ion-card-title>
-            <ion-card-content>
-              <ion-item>
-                <ion-label position="floating">teste</ion-label>
-                <ion-input type="text"></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-label position="floating">teste</ion-label>
-                <ion-input type="text"></ion-input>
-              </ion-item>
-            </ion-card-content>
-          </ion-card-header>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  
+<ion-content>
+  <ion-list>
+    @for (r of recipes; track r.id) {
+      <ion-item>
+        <ion-avatar slot="start">
+          <ion-img [src]="r.imageUrl"></ion-img>
+        </ion-avatar>
+        <ion-label>
+          {{r.title}}
+        </ion-label>
+      </ion-item>
+    }
+  </ion-list>
 </ion-content>
