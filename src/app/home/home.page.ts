@@ -5,6 +5,7 @@ import { addIcons } from 'ionicons';
 import * as allIcons from 'ionicons/icons';
 import { FormsModule } from '@angular/forms';
 import { Recipe } from '../interfaces/recipe.interface';
+import { RecipeService } from '../services/recipe-service/recipe-service';
 
 @Component({
   selector: 'app-home',
@@ -13,24 +14,11 @@ import { Recipe } from '../interfaces/recipe.interface';
   imports: [IonicModule, CommonModule, FormsModule],
 })
 export class HomePage {
-  constructor(private alertController: AlertController) {
+  constructor(private alertController: AlertController, private recipeService: RecipeService) {
     addIcons(allIcons)
   }
 
-  recipes: Recipe[] = [
-    {
-      id: 'r1',
-      title: 'Strogonof de Frango',
-      imageUrl: 'https://www.unileverfoodsolutions.com.br/dam/global-ufs/mcos/SLA/calcmenu/recipes/BR-recipes/chicken-&-other-poultry-dishes/strogonoff-de-frango/main-header.jpg',
-      ingredients: ['Frango', 'creme de leite', 'molho de tomate', 'ketchup']
-    },
-    {
-      id: 'r2',
-      title: 'Pizza Calabresa',
-      imageUrl: 'https://cdn0.tudoreceitas.com/pt/posts/9/8/3/pizza_calabresa_e_mussarela_4389_600_square.jpg',
-      ingredients: ['massa de pizza', 'molho de tomate', 'queijo', 'calabresa']
-    }
-  ]
+  recipes = this.recipeService.getAllRecipes();
   
   // courseName = "";
   // courseRating: number | null = null;
