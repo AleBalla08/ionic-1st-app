@@ -26,6 +26,8 @@ export class RecipeService {
       return;
     }
 
+    console.log('loaded:', this.recipes)
+
     return [...this.recipes]
   }
 
@@ -41,6 +43,12 @@ export class RecipeService {
     }
 
     return { ...foundRecipe }
+  }
+
+  deleteRecipe(recipeId: string | undefined) {
+    this.recipes = this.recipes.filter(recipe => {
+      return recipe.id !== recipeId;
+    });
   }
   
 }

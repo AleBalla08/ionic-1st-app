@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Recipe } from 'src/app/interfaces/recipe.interface';
 import { RecipeService } from 'src/app/services/recipe-service/recipe-service';
 import { IonicModule} from '@ionic/angular';
@@ -9,12 +9,12 @@ import { CommonModule } from '@angular/common';
   selector: 'app-recipe-detail',
   templateUrl: './recipe-detail.component.html',
   styleUrls: ['./recipe-detail.component.scss'],
-  imports: [IonicModule, CommonModule]
+  imports: [IonicModule, CommonModule, RouterModule]
 })
 export class RecipeDetailComponent  implements OnInit {
   loadedRecipe: Recipe | undefined;
 
-  constructor(private activatedRoute: ActivatedRoute, private recipeService: RecipeService) { }
+  constructor(private activatedRoute: ActivatedRoute, private recipeService: RecipeService, private router: Router) { }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(paramMap => {
@@ -23,10 +23,15 @@ export class RecipeDetailComponent  implements OnInit {
         return;
       }
       const recipeId = paramMap.get('id');
-      console.log('recipe id: ', recipeId);
       this.loadedRecipe = this.recipeService.getRecipe(recipeId!);
-      console.log('loades: ', this.loadedRecipe);
     });
   }
 
+  onDeleteRecipe() {
+    console.log(this.loadedRecipe)
+    if (this.loadedRecipe) {
+      this.recipeService.deleteRecipe(this.loadedRecipe.id);
+      this.router.navigate(['/recipes']); 
+    }
+  }
 }

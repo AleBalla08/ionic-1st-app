@@ -6,20 +6,29 @@ import * as allIcons from 'ionicons/icons';
 import { FormsModule } from '@angular/forms';
 import { Recipe } from '../interfaces/recipe.interface';
 import { RecipeService } from '../services/recipe-service/recipe-service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonicModule, CommonModule, FormsModule],
+  imports: [IonicModule, CommonModule, FormsModule, RouterModule],
 })
 export class HomePage {
+  recipes: Recipe[] | undefined = [];
+
   constructor(private alertController: AlertController, private recipeService: RecipeService) {
     addIcons(allIcons)
   }
 
-  recipes = this.recipeService.getAllRecipes();
-  
+  ionViewWillEnter() {
+    this.loadRecipes();
+  }
+
+  loadRecipes() {
+    this.recipes = this.recipeService.getAllRecipes();
+  }
+
   // courseName = "";
   // courseRating: number | null = null;
 

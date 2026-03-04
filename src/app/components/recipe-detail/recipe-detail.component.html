@@ -1,16 +1,20 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start"><ion-back-button defaultHref="/recipes"></ion-back-button></ion-buttons>
     <ion-title>Recipe Details</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="onDeleteRecipe()"><ion-icon name="trash-outline" slot="icon-only"></ion-icon></ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content *ngIf="loadedRecipe as recipe">
-  <ion-grid>
+  <ion-grid class="ion-no-padding">
     <ion-row>
-      <ion-col>
+      <ion-col class="ion-no-padding">
         <ion-img [src]="recipe.imageUrl"></ion-img>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row class="ion-text-center">
       <ion-col>
         <h1>{{recipe.title}}</h1>
       </ion-col>
