@@ -3,7 +3,6 @@ import { IonicModule, AlertController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { addIcons } from 'ionicons';
 import * as allIcons from 'ionicons/icons';
-import { FormsModule } from '@angular/forms';
 import { Recipe } from '../interfaces/recipe.interface';
 import { RecipeService } from '../services/recipe-service/recipe-service';
 import { RouterModule } from '@angular/router';
@@ -12,7 +11,7 @@ import { RouterModule } from '@angular/router';
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonicModule, CommonModule, FormsModule, RouterModule],
+  imports: [IonicModule, CommonModule, RouterModule],
 })
 export class HomePage {
   recipes: Recipe[] | undefined = [];
